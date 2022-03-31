@@ -22,6 +22,7 @@ namespace Mission13.Controllers
 
         public IActionResult Index(string bowlerTeam)
         {
+            //just a comment so I can make sure everythings committed:)
             ViewBag.Teams = _repo.Teams.ToList();
 
             var b = new BowlingViewModel
