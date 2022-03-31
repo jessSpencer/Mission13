@@ -22,17 +22,23 @@
     <tbody>
         @foreach (Bowler b in Model.Bowlers)
         {
-            <tr>
-                <td>@b.BowlerFirstName</td>
-                <td>@b.BowlerMiddleInit</td>
-                <td>@b.BowlerLastName</td>
-                <td>@b.BowlerAddress</td>
-                <td>@b.BowlerCity</td>
-                <td>@b.BowlerState</td>
-                <td>@b.BowlerZip</td>
-                <td>@b.BowlerPhoneNumber</td>
-                <td>@b.Team.TeamName</td>
-            </tr>
+        <tr>
+            <td>@b.BowlerFirstName</td>
+            <td>@b.BowlerMiddleInit</td>
+            <td>@b.BowlerLastName</td>
+            <td>@b.BowlerAddress</td>
+            <td>@b.BowlerCity</td>
+            <td>@b.BowlerState</td>
+            <td>@b.BowlerZip</td>
+            <td>@b.BowlerPhoneNumber</td>
+            <td>@b.Team.TeamName</td>
+            <td><a class="btn btn-warning" asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@b.BowlerID">Edit</a></td>
+            <td>
+                <form method="post" asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@b.BowlerID">
+                    <input class="btn btn-danger" type="submit" value="Delete" />
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 

@@ -4,7 +4,7 @@
 @{
 }
 
-@{ 
+@{
     ViewData["Title"] = "New Bowler";
 
 }
@@ -16,13 +16,9 @@
 </h1>
 
 <div>
-    <form method="post" asp-controller="Home" asp-action="Entry">
-        <div asp-validation-summary="All"></div>
-
-        <div class="form-group">
-            <label asp-for="BowlerID">BowlerID:</label>
-            <input asp-for="BowlerID" class="form-control" />
-        </div>
+    <form method="post" asp-controller="Home" asp-action="Edit">
+        
+        <input hidden asp-for="BowlerID" value="@Model.BowlerID" />
 
         <div class="form-group">
             <label asp-for="BowlerFirstName">First Name:</label>
@@ -68,12 +64,12 @@
             <label asp-for="TeamID">Team:</label>
             @*<input asp-for="TeamID" class="form-control" />*@
             <select asp-for="TeamID" class="form-control">
-                <option value="">Select a Team</option>
-                @foreach (Team t in ViewBag.Teams)
-                {
-                    <option value="@t.TeamID">@t.TeamName</option>
-                }
-            </select>
+                    <option value="">Select a Team</option>
+                    @foreach (Team t in ViewBag.Teams)
+                    {
+                        <option value="@t.TeamID">@t.TeamName</option>
+                    }
+                </select>
         </div>
         <button class="btn btn-secondary" type="submit">Submit</button>
         <button class="btn btn-warning" asp-action="Index">Cancel</button>

@@ -63,6 +63,50 @@ namespace Mission13.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Edit(int bowlerid)
+        {
+            ViewBag.Teams = _context.Teams.ToList();
 
+
+            var bowler = _context.Bowlers.Single(x => x.BowlerID == bowlerid);
+
+            return View("Edit", bowler);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Bowler bowler)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.Teams = _context.Teams.ToList();
+
+                _context.Update(bowler);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Teams = _context.Teams.ToList();
+                return View("Index");
+            }
+
+        }
+        [HttpGet]
+        public IActionResult Delete(int bowlerid)
+        {
+            var bowler = _context.Bowlers.Single(x => x.BowlerID == bowlerid);
+
+            return View(bowler);
+        }
+        [HttpPost]
+        public IActionResult Delete(Bowler bowler)
+        {
+            _context.Bowlers.Remove(bowler);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
