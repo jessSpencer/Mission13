@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BowlingViewModel
+
+<h1>Bowlers</h1>
+<table class="table table-sm table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Init</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone Number</th>
+            <th>Team Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Bowler b in Model.Bowlers)
+        {
+            <tr>
+                <td>@b.BowlerFirstName</td>
+                <td>@b.BowlerMiddleInit</td>
+                <td>@b.BowlerLastName</td>
+                <td>@b.BowlerAddress</td>
+                <td>@b.BowlerCity</td>
+                <td>@b.BowlerState</td>
+                <td>@b.BowlerZip</td>
+                <td>@b.BowlerPhoneNumber</td>
+                <td>@b.Team.TeamName</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
