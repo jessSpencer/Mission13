@@ -38,23 +38,29 @@ namespace Mission13.Controllers
             };
             return View(b);
         }
+        [HttpGet]
+        public IActionResult Entry()
+        {
+            ViewBag.Teams = _context.Teams.ToList();
+            return View(new Bowler());
+        }
 
-
+        [HttpPost]
         public IActionResult Entry(Bowler b)
         {
-            return View();
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(b);
-            //    _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                ViewBag.Teams = _context.Teams.ToList();
+                _context.Add(b);
+                _context.SaveChanges();
 
-            //    return View("Confirmation", b);
-            //}
-            //else
-            //{
-            //    ViewBag.Teams = _context.Teams.ToList();
-            //    return View(b);
-            //}
+                return View("Confirmation", b);
+            }
+            else
+            {
+                ViewBag.Teams = _context.Teams.ToList();
+                return View(b);
+            }
         }
 
 
